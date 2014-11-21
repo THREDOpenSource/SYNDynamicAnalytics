@@ -5,10 +5,10 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
                        SYNDynamicAnalytics provides a category on UIViewController that automatically handles measuring screen time on any UIViewController subclass. Blocks and delegate support to easily utilize any analytics library.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/SYNDynamicAnalytics"
+  s.homepage         = "https://github.com/Syntertainment/SYNDynamicAnalytics"
   s.license          = 'MIT'
   s.author           = { "Sidhant Gandhi" => "sidhantg@syntertainment.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/SYNDynamicAnalytics.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/Syntertainment/SYNDynamicAnalytics.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true

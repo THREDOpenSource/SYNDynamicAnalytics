@@ -1,13 +1,13 @@
 //
-//  SYNViewController.h
+//  ViewController2.h
 //  SYNDynamicAnalytics
 //
-//  Created by Sidhant Gandhi on 11/21/2014.
+//  Created by Sidhant Gandhi on 11/20/14.
 //  Copyright (c) 2014 Sidhant Gandhi. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface SYNViewController : UIViewController
+@interface ViewController2 : UIViewController
 
 @end

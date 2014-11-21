@@ -1,28 +1,14 @@
-#
-# Be sure to run `pod lib lint SYNDynamicAnalytics.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "SYNDynamicAnalytics"
   s.version          = "0.1.0"
-  s.summary          = "A short description of SYNDynamicAnalytics."
+  s.summary          = "Automatically measure screen time on a view controller."
   s.description      = <<-DESC
-                       An optional longer description of SYNDynamicAnalytics
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       SYNDynamicAnalytics provides a category on UIViewController that automatically handles measuring screen time on any UIViewController subclass. Blocks and delegate support to easily utilize any analytics library.
                        DESC
   s.homepage         = "https://github.com/<GITHUB_USERNAME>/SYNDynamicAnalytics"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Sidhant Gandhi" => "sidhantg@syntertainment.com" }
   s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/SYNDynamicAnalytics.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
@@ -32,7 +18,6 @@ Pod::Spec.new do |s|
     'SYNDynamicAnalytics' => ['Pod/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.public_header_files = 'Pod/Classes/**/*.h'
+  s.frameworks = 'UIKit'
 end

@@ -1,6 +1,5 @@
 # SYNDynamicAnalytics
 
-[![CI Status](http://img.shields.io/travis/Sidhant Gandhi/SYNDynamicAnalytics.svg?style=flat)](https://travis-ci.org/Sidhant Gandhi/SYNDynamicAnalytics)
 [![Version](https://img.shields.io/cocoapods/v/SYNDynamicAnalytics.svg?style=flat)](http://cocoadocs.org/docsets/SYNDynamicAnalytics)
 [![License](https://img.shields.io/cocoapods/l/SYNDynamicAnalytics.svg?style=flat)](http://cocoadocs.org/docsets/SYNDynamicAnalytics)
 [![Platform](https://img.shields.io/cocoapods/p/SYNDynamicAnalytics.svg?style=flat)](http://cocoadocs.org/docsets/SYNDynamicAnalytics)

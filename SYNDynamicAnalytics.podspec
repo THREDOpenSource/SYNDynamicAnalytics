@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SYNDynamicAnalytics"
-  s.version          = "0.1.0"
+  s.version          = "0.1.2"
   s.summary          = "Automatically measure screen time on a view controller."
   s.description      = <<-DESC
                        SYNDynamicAnalytics provides a category on UIViewController that automatically handles measuring screen time on any UIViewController subclass. Blocks and delegate support to easily utilize any analytics library.

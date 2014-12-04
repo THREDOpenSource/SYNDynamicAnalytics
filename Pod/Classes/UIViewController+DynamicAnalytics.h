@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) NSDate *appearTimestamp;
 @property (nonatomic, strong) NSDate *disappearTimestamp;
+@property (nonatomic, strong) NSNumber *screenTime;
 @property (nonatomic, strong) id <SYNDynamicAnalyticsDelegate> analyticsDelegate;
 @property (nonatomic, copy) void (^recordScreenTimeBlock)(NSTimeInterval timeInterval); /*  Make sure if you use a block, not to reference self in it. 
                                                                                             May result in retain cycle.

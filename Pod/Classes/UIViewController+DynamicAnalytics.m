@@ -12,6 +12,7 @@
 @implementation UIViewController (DynamicAnalytics)
 @dynamic appearTimestamp;
 @dynamic disappearTimestamp;
+@dynamic screenTime;
 @dynamic analyticsDelegate;
 @dynamic recordScreenTimeBlock;
 
@@ -24,8 +25,8 @@
         Class class = [self class];
         
         // We will swizzle multiple methods
-        const SEL originalSelectors[] = {@selector(viewDidAppear:), @selector(viewDidDisappear:)};
-        const SEL swizzledSelectors[] = {@selector(SYN_viewDidAppear:), @selector(SYN_viewDidDisappear:)};
+        const SEL originalSelectors[] = {@selector(viewWillAppear:), @selector(viewWillDisappear:)};
+        const SEL swizzledSelectors[] = {@selector(SYN_viewWillAppear:), @selector(SYN_viewWillDisappear:)};
         
         // Check that we have the same number of original and swizzled selectors
         if (sizeof(originalSelectors) != sizeof(swizzledSelectors)) {
@@ -57,7 +58,7 @@
 
 #pragma mark - Method Swizzling
 
-- (void)SYN_viewDidAppear:(BOOL)animated {
+- (void)SYN_viewWillAppear:(BOOL)animated {
     
     [self setAppearTimestamp];
     
@@ -66,10 +67,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setDisappearTimestamp) name:UIApplicationWillResignActiveNotification object:nil];
 
     // Call the original method (now swizzled)
-    [self SYN_viewDidAppear:animated];
+    [self SYN_viewWillAppear:animated];
 }
 
-- (void)SYN_viewDidDisappear:(BOOL)animated {
+- (void)SYN_viewWillDisappear:(BOOL)animated {
     
     [self setDisappearTimestamp];
     
@@ -78,7 +79,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
     
     // Call the orignal method (now swizzled)
-    [self SYN_viewDidDisappear:animated];
+    [self SYN_viewWillDisappear:animated];
 }
 
 #pragma mark - Associated Objects
@@ -93,6 +94,10 @@
 
 - (NSDate *)disappearTimestamp {
     return objc_getAssociatedObject(self, @selector(disappearTimestamp));
+}
+
+- (NSNumber *)screenTime {
+    return objc_getAssociatedObject(self, @selector(screenTime));
 }
 
 - (id<SYNDynamicAnalyticsDelegate>)analyticsDelegate {
@@ -122,6 +127,9 @@
     [self logScreenTime];
 }
 
+- (void)setScreenTime:(NSNumber *)screenTime {
+    objc_setAssociatedObject(self, @selector(screenTime), screenTime, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 - (void)setAnalyticsDelegate:(id<SYNDynamicAnalyticsDelegate>)analyticsDelegate {
     objc_setAssociatedObject(self, @selector(analyticsDelegate), analyticsDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -146,6 +154,11 @@
     
     if (self.analyticsDelegate && self.recordScreenTimeBlock) {
         NSLog(@"[%@] Both delegate and block are set. This may result in duplicate logging.", NSStringFromClass(self.class));
+    }
+    
+    // For the viewcontroller property
+    if (self) {
+        [self setScreenTime:[NSNumber numberWithDouble:timeOnViewController]];
     }
     
     // For the delegate, if one is set

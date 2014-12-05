@@ -34,7 +34,7 @@
         }
         
         // Loop over selectors and exchange method implmentations
-        for (int i = 0; i < sizeof(originalSelectors); i++) {
+        for (int i = 0; i < sizeof(originalSelectors)/sizeof(SEL); i++) {
             Method originalMethod = class_getInstanceMethod(class, originalSelectors[i]);
             Method swizzledMethod = class_getInstanceMethod(class, swizzledSelectors[i]);
             
